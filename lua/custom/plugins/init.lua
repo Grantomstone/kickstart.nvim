@@ -6,11 +6,11 @@ return {
     {
         "kdheepak/lazygit.nvim",
     	cmd = {
-    		"LazyGit",
-    		"LazyGitConfig",
-    		"LazyGitCurrentFile",
-    		"LazyGitFilter",
-    		"LazyGitFilterCurrentFile",
+    	    "LazyGit",
+    	    "LazyGitConfig",
+    	    "LazyGitCurrentFile",
+    	    "LazyGitFilter",
+    	    "LazyGitFilterCurrentFile",
     	},
         -- optional for floating window border decoration
         dependencies = {
@@ -19,8 +19,16 @@ return {
 	lazy = false,
 	config = function()
             require("telescope").load_extension("lazygit")
-	    vim.keymap.set('n', '<leader>gg', '<cmd>LazyGit<cr>', {desc = 'Lazy[g]it inte[g]ration'})
+	    vim.keymap.set('n', '<leader>gc', '<cmd>LazyGit<cr>', {desc = '[G]it [C]ommit'})
         end,
     },
+        {
+        "utilyre/barbecue.nvim",
+        name = "barbecue",
+        version = "*",
+        dependencies = {
+            "SmiteshP/nvim-navic",
+        },
+    }
 
 }
