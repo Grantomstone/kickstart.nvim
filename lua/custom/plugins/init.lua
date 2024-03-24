@@ -5,6 +5,7 @@
 return {
     {
         "kdheepak/lazygit.nvim",
+        name ="lazygit",
     	cmd = {
     	    "LazyGit",
     	    "LazyGitConfig",
@@ -23,12 +24,43 @@ return {
         end,
     },
         {
+        "SmiteshP/nvim-navic",
+        name = "nvim-navic",
+        dependencies = {
+            "neovim/nvim-lspconfig"
+        },
+        config = function()
+            local navic = require("nvim-navic")
+            local on_attach = function(client, bufnr)
+            if client.server_capabilities.documentSymbolProvider then
+                navic.attach(client, bufnr)
+            end
+            end
+
+        require("lspconfig").clangd.setup {
+            on_attach = on_attach
+        }
+        end,
+    },
+        {
         "utilyre/barbecue.nvim",
         name = "barbecue",
         version = "*",
         dependencies = {
             "SmiteshP/nvim-navic",
         },
-    }
+        config = function()
+            require("barbecue.ui").toggle()
+        end,
+    },
+        {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    },
 
 }
