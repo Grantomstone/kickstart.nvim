@@ -105,8 +105,6 @@ return {
                 c = { "clang-format" },
                 cpp = { "clang-format" },
             },
-            -- Set up format-on-save
-            format_on_save = { timeout_ms = 500, lsp_fallback = true },
             -- Customize formatters
             formatters = {
                 shfmt = {
@@ -116,21 +114,18 @@ return {
         },
     },
     {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
+        "nvim-tree/nvim-tree.lua",
+        version = "*",
+        lazy = false,
         dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-            "MunifTanjim/nui.nvim",
+            "nvim-tree/nvim-web-devicons",
         },
+        config = function()
+            require("nvim-tree").setup {}
+        end,
         keys = {
-            { "<leader>fo", "<cmd>Neotree position=current<cr>", desc = "[F]iletree [O]pen" },
-            { "<leader>fc", "<cmd>Neotree close<cr>",            desc = "[F]iletree [C]lose" },
+            { "<leader>ft", "<cmd>NvimTreeToggle<cr>",   desc = "[F]iletree [T]oggle" },
+            { "<leader>ff", "<cmd>NvimTreeFindFile<cr>", desc = "[F]iletree [F]ind file" },
         },
-    },
-    {
-        'akinsho/git-conflict.nvim',
-        version = "1.*",
-        config = true,
     },
 }
